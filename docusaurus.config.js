@@ -23,12 +23,12 @@ const config = {
   url: 'https://passerby5003.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/Docusaurus-Test/',
+  baseUrl: '/Docusaurus-Devblog/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'passerby5003', // Usually your GitHub org/user name.
-  projectName: 'Docusaurus-Test', // Usually your repo name.
+  projectName: 'Docusaurus-Devblog', // Usually your repo name.
   deploymentBranch: 'main',
 
   onBrokenLinks: 'throw',
@@ -128,8 +128,8 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'BiliBili',
+                href: 'https://space.bilibili.com/107515279',
               },
               {
                 label: 'X',
@@ -146,7 +146,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://passerby5003.github.io/Docusaurus-Devblog',
               },
             ],
           },
