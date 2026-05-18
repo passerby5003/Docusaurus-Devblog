@@ -22,3 +22,8 @@ explaination:
   label: Explaination
   permalink: /explaination
   description: Explaination of the class
+
+pokefusion:
+  label: Poke Fusion
+  permalink: /pokefusion
+  description: Poke Fusion game design
