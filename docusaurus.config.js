@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Rarick Dev Blog',
+  title: 'Rarick',
   tagline: '个人博客',
   favicon: 'img/favicon.ico',
 
@@ -103,8 +103,15 @@ const config = {
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/passerby5003',
-            label: 'GitHub',
             position: 'right',
+            className: "header--github-link",
+            "aria-label": "GitHub repository",
+          },
+          {
+            href: 'https://space.bilibili.com/107515279',
+            position: 'right',
+            className: "header--bilibili-link",
+            "aria-label": "BiliBili space",
           },
         ],
       },
