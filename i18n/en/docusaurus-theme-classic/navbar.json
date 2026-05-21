@@ -7,9 +7,9 @@
     "message": "Icon",
     "description": "The alt text of navbar logo"
   },
-  "item.label.说明文档": {
-    "message": "Reference Docs",
-    "description": "Navbar item with label 说明文档"
+  "item.label.博客总览": {
+    "message": "Overview",
+    "description": "Navbar item with label 博客总览"
   },
   "item.label.博客": {
     "message": "Blog",

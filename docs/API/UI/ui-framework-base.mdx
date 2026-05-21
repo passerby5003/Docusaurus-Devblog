@@ -9,3 +9,104 @@ tags:
 # UI Framework Base
 
 整个UI框架的基础，UI的所有进入退出、红点系统等，都由此类进行控制。
+:::danger[导入时即报错的注意事项]
+    务必检查是否正确安装了Dotween（免费或付费版都可以），以及检查是否正确安装了Addresable。  
+    如无需红点系统，建议直接将红点相关代码注释掉
+:::
+
+## 字段参数
+| 名称 | 类型 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| startShowEvent | Func | private | 开始展现UI时的事件 |
+| completeShowEvent | Func | private | 结束展现UI时的事件 |
+| startHideEvent | Func | private | 开始隐藏UI时的事件 | 
+| completeHideEvent | Func | private | 结束隐藏UI时的事件 |
+| startMoveEvent | Func | private | 开始移动时的事件 |
+| completeMoveEvent | Func | private | 结束移动时的事件 |
+| simpleTween | Tween | private | 一般的移动时所用的Dotween动画 |
+| redPointhandle | AsyncOperationHandle | private | 单个UIFramework所指定的专属于此UI的红点 |
+
+:::warning[需要注意的点]
+    Func的结构： `Func<object, object>`   
+    Func中的第一个参数是Action的默认参数，一般我们用第二个参数，即UI本身（一般是，根据具体环境决定）
+:::
+
+## 方法
+| 方法名 | 参数 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| OnEnable | | public | Unity事件，可重写 |
+| OnDisable | | public | Unity事件，可重写 |
+| OnDestroy | | public | Unity事件，可重写，必须引用base方法 |
+| AddShowEvent | showEvent<br/>timingType | public | 添加显示UI时的事件 |
+| RemoveShowEvent | showEvent<br/>timingType | public | 移除显示UI时的事件 |
+| AddHideEvent | showEvent<br/>timingType | public | 添加隐藏UI时的事件 |
+| RemoveHideEvent | showEvent<br/>timingType | public | 移除隐藏UI时的事件 |
+| AddMoveEvent | showEvent<br/>timingType | public | 添加移动UI时的事件 |
+| RemoveMoveEvent | showEvent<br/>timingType | public | 移除移动UI时的事件 |
+| ShowUI | | public | 直接激活UI |
+| ShowUI | showType<br/>direction<br/>duration<br/>behavior | public | 显示UI，默认UI未激活，移动终点位置默认为0，0 ，以锚点为移动坐标系|
+| ShowUI | movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | 显示UI，默认UI未激活，以锚点为移动坐标系，，初始位置为当前UI所在的位置|
+| ShowUI | startPos<br/>movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | 显示UI，默认UI未激活，以锚点为移动坐标系，初始位置和终点都自定义|
+| ShowUI | showSequence<br/>showBehavior | public | 显示UI，默认UI未激活，自定义移动方式且不重写借口或方法|
+| HideUI | | public | 直接隐藏UI |
+| HideUI | showType<br/>direction<br/>duration<br/>behavior | public | 隐藏UI，默认UI已经激活，移动终点位置默认为0，0 ，以锚点为移动坐标系|
+| HideUI | movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | 隐藏UI，默认UI已经激活，以锚点为移动坐标系，初始位置为当前UI所在的位置|
+| HideUI | startPos<br/>movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | 隐藏UI，默认UI已经激活，以锚点为移动坐标系，初始位置和终点都自定义|
+| HideUI | showSequence<br/>showBehavior | public | 显示UI，默认UI已经激活，自定义移动方式且不重写借口或方法|
+| MoveUI | movePos<br/>duration | public | 基于锚点坐标移动UI |
+| MoveUI | startPos<br/>endPos<br/>duration | public | 基于锚点坐标移动UI，同时指定开始和终点位置 |
+| ScaleUI | moveScale<br/>duration | public | 缩放UI |
+| SlideNumber | txtNumber<br/>startNum<br/>endNum<br/>duration | public | 使用TextMeshPro的文字来进行数字滚动 |
+| IsActive | | public | 获取当前UI是否被激活 | 
+| UseRedPoint | isShowRedPoint | public | 是否在此UI上显示红点<br/>注：`isShowRedPoint`需要一个返回bool的方法 |
+| GetBehaviorByType | movePos<br/>showType<br/>duration | private | 获取指定表现形式对应的方法（类状态机） |
+| GetBehaviorByType | startPos<br/>movePos<br/>showType<br/>duration | private | 获取指定表现形式对应的方法（类状态机） |
+| IsPointerOverGameObject | mousePosition | public | 获取鼠标是否悬浮于Gameobject之上 |
+
+:::warning[需要注意的点]
+    UI的`ShowUI()`和`HideUI()`方法需要检测UI本身是否激活，因此调用时需要通过父级或者总管脚本进行控制。这样的设计是为了逐层调度UI，避免出现UI 1号直接调了UI 2号。
+:::
+
+## 具体使用范例
+UI管理类的范例：  
+
+```csharp title="UIFrameworkExampleManager.cs"
+public class UIManager : MonoBehavior
+{
+    //参数和字段等...
+    public SubUI subUI;
+
+    private void Start() {
+        subUI.SetUI(true);
+    }
+
+    private void OnApplicationQuit() {
+        subUI.SetUI(false);
+    }
+}
+```
+
+UI框架类的范例：  
+
+```csharp title="UIFrameworkExampleSubUI.cs"
+public class SubUI : UIFrameworkBase
+{
+    //参数和字段等...
+
+    //OnEnable和OnDisable等,需要override
+
+    public void SetUI(bool isShow)
+    {
+        if (isShow)
+        {
+            //需要移动到的位置要算一下，一般在Hierachy中调到Debug模式看anchored position，这里直接用0，0作为终点
+            ShowUI(UiShowHideType.Slide, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+        }
+        else
+        {
+            //需要移动到的位置要算一下，一般在Hierachy中调到Debug模式看anchored position，这里直接用0，0作为终点
+            HideUI(UiShowHideType.Slide, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+        }
+    }
+}
+```

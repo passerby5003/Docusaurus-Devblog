@@ -1,0 +1,28 @@
+---
+sidebar_position: 8
+description: UI Ease In Out Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Ease In Out Behavior
+
+The UI first moves to a position offset from the target position and then bounces back to the target position. This creates an effect similar to a UI that "bounces" before settling into its target position. It has directionality, supporting only left and right directions.
+
+For ease-in and ease-out states, you must provide the end coordinates; otherwise, the movement will have no effect.
+
+Both the start and end points are based on the anchored position. Ensure careful consideration when specifying these points.
+
+:::warning[Note]
+    When the end coordinate is (0, 0), the UI is moved off-screen by default.
+:::
+
+Inherits from: 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+## Usage Example
+```csharp title="Example.cs"
+    ShowUI(new Vector2(1f, 0f), new Vector2(1000f, 0f), UiShowHideType.EaseInOut, UiShowHideDirection.Right, 1f, UiShowHideBehavior.Synchronize);
+```

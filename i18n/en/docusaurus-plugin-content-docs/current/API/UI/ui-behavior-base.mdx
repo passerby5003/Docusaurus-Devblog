@@ -1,0 +1,29 @@
+---
+sidebar_position: 2
+description: UI Beahvior Base
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Behavior Base
+
+The foundation of the UI behavior class. All extended behavior classes must inherit from this class to ensure they run correctly under the same logic.  
+If you need to add your own behavior class to the UI framework, please add your newly created UI animation in the `GetBehaviorByType` method, or you can use `Dotween.Sequence()` to add your desired animation sequence (more convenient but requires more control).  
+
+However, the existing basic animations can already meet most display requirements. Only create new animations if the current ones do not satisfy your needs.  
+
+## Fields and Parameters
+| Name | Type | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| gameObj | MonoBehavior | public | Typically represents the current UI GameObject itself |
+| movePos | Vector2 | public | End position for movement |
+| startPos | Vector2 | public | Start position for movement |
+| duration | float | public | Duration of the animation effect |
+| moveTween | `List<MoveTween>` | protected | All effects that require Dotween are stored here |
+
+## Methods 
+| Method Name | Parameters | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| UIBehaviorBase | gameObj<br/>movePos<br/>duration | public | Constructor method for initialization |
+| UIBehaviorBase | gameObj<br/>movePos<br/>startPos<br/>duration | public | Constructor method for initialization |

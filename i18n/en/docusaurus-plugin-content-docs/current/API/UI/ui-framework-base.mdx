@@ -8,4 +8,105 @@ tags:
 
 # UI Framework Base
 
-The infastructure of the whole Ui framework, including UI animation in and out, red points, etc.
+The foundation of the entire UI framework. All UI entry, exit, red dot system, etc., are controlled by this class.
+:::danger[Important Notes to Avoid Errors During Import]
+    Ensure that Dotween (free or paid version) is correctly installed, and verify that Addressable is properly installed.  
+    If the red dot system is not required, it is recommended to comment out the red dot-related code.
+:::
+
+## Fields and Parameters
+| Name | Type | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| startShowEvent | Func | private | Event triggered at the start of displaying the UI |
+| completeShowEvent | Func | private | Event triggered upon completing the display of the UI |
+| startHideEvent | Func | private | Event triggered at the start of hiding the UI |
+| completeHideEvent | Func | private | Event triggered upon completing the hiding of the UI |
+| startMoveEvent | Func | private | Event triggered at the start of moving the UI |
+| completeMoveEvent | Func | private | Event triggered upon completing the movement of the UI |
+| simpleTween | Tween | private | General Dotween animation used for movement |
+| redPointhandle | AsyncOperationHandle | private | Dedicated red dot for a single UI Framework associated with this UI |
+
+:::warning[Notes to Consider]
+    The structure of `Func`: `Func<object, object>` 
+    The first parameter of `Func` is the default parameter for `Action`. Generally, we use the second parameter, which is the UI itself (depending on the specific context).
+:::
+
+## Methods
+| Method Name | Parameters | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| OnEnable | | public | Unity event, can be overridden |
+| OnDisable | | public | Unity event, can be overridden |
+| OnDestroy | | public | Unity event, can be overridden, must reference the base method |
+| AddShowEvent | showEvent<br/>timingType | public | Add an event for displaying the UI |
+| RemoveShowEvent | showEvent<br/>timingType | public | Remove an event for displaying the UI |
+| AddHideEvent | showEvent<br/>timingType | public | Add an event for hiding the UI |
+| RemoveHideEvent | showEvent<br/>timingType | public | Remove an event for hiding the UI |
+| AddMoveEvent | showEvent<br/>timingType | public | Add an event for moving the UI |
+| RemoveMoveEvent | showEvent<br/>timingType | public | Remove an event for moving the UI |
+| ShowUI | | public | Directly activate the UI |
+| ShowUI | showType<br/>direction<br/>duration<br/>behavior | public | Display the UI. By default, the UI is not activated. The endpoint for movement defaults to (0, 0), using the anchor point as the movement coordinate system. |
+| ShowUI | movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | Display the UI. By default, the UI is not activated. Uses the anchor point as the movement coordinate system. The initial position is the current position of the UI. |
+| ShowUI | startPos<br/>movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | Display the UI. By default, the UI is not activated. Uses the anchor point as the movement coordinate system. Both the start and end positions are customizable. |
+| ShowUI | showSequence<br/>showBehavior | public | Display the UI. By default, the UI is not activated. Custom movement method without overriding the interface or methods. |
+| HideUI | | public | Directly hide the UI |
+| HideUI | showType<br/>direction<br/>duration<br/>behavior | public | Hide the UI. By default, the UI is activated. The endpoint for movement defaults to (0, 0), using the anchor point as the movement coordinate system. |
+| HideUI | movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | Hide the UI. By default, the UI is activated. Uses the anchor point as the movement coordinate system. The initial position is the current position of the UI. |
+| HideUI | startPos<br/>movePos<br/>showType<br/>direction<br/>duration<br/>behavior | public | Hide the UI. By default, the UI is activated. Uses the anchor point as the movement coordinate system. Both the start and end positions are customizable. |
+| HideUI | showSequence<br/>showBehavior | public | Hide the UI. By default, the UI is activated. Custom movement method without overriding the interface or methods. |
+| MoveUI | movePos<br/>duration | public | Move the UI based on the anchor point coordinates |
+| MoveUI | startPos<br/>endPos<br/>duration | public | Move the UI based on the anchor point coordinates, specifying both start and end positions |
+| ScaleUI | moveScale<br/>duration | public | Scale the UI |
+| SlideNumber | txtNumber<br/>startNum<br/>endNum<br/>duration | public | Slide numbers using TextMeshPro text |
+| IsActive | | public | Check if the current UI is activated |
+| UseRedPoint | isShowRedPoint | public | Whether to display a red dot on this UI<br/>Note: `isShowRedPoint` requires a method that returns a bool |
+| GetBehaviorByType | movePos<br/>showType<br/>duration | private | Get the method corresponding to the specified behavior type (state machine-like) |
+| GetBehaviorByType | startPos<br/>movePos<br/>showType<br/>duration | private | Get the method corresponding to the specified behavior type (state machine-like) |
+| IsPointerOverGameObject | mousePosition | public | Check if the mouse is hovering over a GameObject |
+
+:::warning[Notes to Consider]
+    The `ShowUI()` and `HideUI()` methods of the UI need to check whether the UI itself is activated. Therefore, they should be called through the parent or a master script for control. This design is intended to hierarchically manage the UI and avoid issues such as UI 1 directly calling UI 2.
+:::
+
+## Usage Examples
+Example of a UI Manager class:  
+
+```csharp title="UIFrameworkExampleManager.cs"
+public class UIManager : MonoBehavior
+{
+    // Parameters and fields, etc...
+    public SubUI subUI;
+
+    private void Start() {
+        subUI.SetUI(true);
+    }
+
+    private void OnApplicationQuit() {
+        subUI.SetUI(false);
+    }
+}
+```
+
+Example of a UI Framework class:  
+
+```csharp title="UIFrameworkExampleSubUI.cs"
+public class SubUI : UIFrameworkBase
+{
+    // Parameters and fields, etc...
+
+    // Override OnEnable and OnDisable, etc.
+
+    public void SetUI(bool isShow)
+    {
+        if (isShow)
+        {
+            // Calculate the position to move to. Generally, switch to Debug mode in Hierarchy to check the anchored position. Here, (0, 0) is used as the endpoint.
+            ShowUI(UiShowHideType.Slide, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+        }
+        else
+        {
+            // Calculate the position to move to. Generally, switch to Debug mode in Hierarchy to check the anchored position. Here, (0, 0) is used as the endpoint.
+            HideUI(UiShowHideType.Slide, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+        }
+    }
+}
+```

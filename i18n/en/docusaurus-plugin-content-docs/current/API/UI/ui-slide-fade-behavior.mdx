@@ -1,0 +1,26 @@
+---
+sidebar_position: 7
+description: UI Slide Fade Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Slide Fade Behavior
+
+Basic UI sliding with fading based on `CanvasGroup` transparency/opacity. It has directionality and moves from the start point to the end point along a default Bezier curve.
+
+Both the start and end points are based on the anchored position. Ensure careful consideration when specifying these points.
+
+:::warning[Note]
+    When the end coordinate is (0, 0), the UI is moved off-screen by default.
+:::
+
+Inherits from: 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+## Usage Example
+```csharp title="Example.cs"
+    ShowUI(new Vector2(1f, 0f), new Vector2(1000f, 0f), UiShowHideType.SlideFade, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+```

@@ -1,0 +1,26 @@
+---
+sidebar_position: 6
+description: UI Slide Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Slide Behavior
+
+Basic UI sliding with directionality. The default behavior moves from the start point to the end point along a default Bezier curve.
+
+Both the start and end points are based on the anchored position. Ensure careful consideration when specifying these points.
+
+:::warning[Note]
+    When the end coordinate is (0, 0), the UI is moved off-screen by default.
+:::
+
+Inherits from: 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+## Usage Example
+```csharp title="Example.cs"
+    ShowUI(new Vector2(1f, 0f), new Vector2(1000f, 0f), UiShowHideType.Slide, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+```

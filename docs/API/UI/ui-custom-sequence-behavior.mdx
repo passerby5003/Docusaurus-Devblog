@@ -1,0 +1,24 @@
+---
+sidebar_position: 9
+description: UI Custom Sequence Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Custom Sequence behavior
+
+手动指定UI的动效，与前面的预设类不一样的是，该类继承不必必须继承[UIBehaviorBase](./ui-behavior-base.mdx)，可以直接继承[UIFrameworkBase](./ui-framework-base.mdx)。需要自己编写Dotween Sequence并进行控制才能实现。
+
+继承自： 
+- [IUICustomBehavior](./iui-custom-behavior.mdx)
+
+## 使用范例
+```csharp title="Example.cs"
+    curSequence = DOTween.Sequence();
+    curSequence.Append(search.DOLocalMoveX(0f, 1.5f).Pause());
+    curSequence.Join(cam.DOLocalMoveX(100f, 1.75f).Pause());
+    curSequence.Append(imgbg.DOColor(new Color32(120,70,100,255), 1.5f).Pause());
+
+    ShowUI(curSequence, this);
+```

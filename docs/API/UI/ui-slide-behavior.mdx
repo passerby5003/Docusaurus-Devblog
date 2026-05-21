@@ -1,0 +1,26 @@
+---
+sidebar_position: 6
+description: UI Slide Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Slide behavior
+
+UI 基础的滑动，具有方向性，表现形式为从起点按照默认贝塞尔曲线移动到终点。
+
+起点和终点都是基于anchored position，填写起点和终点时务必注意。
+
+:::warning[注意事项]
+    当终点坐标为0，0时，默认移出屏幕外.
+:::
+
+继承自： 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+## 使用范例
+```csharp title="Example.cs"
+    ShowUI(new Vector2(1f, 0f), new Vector2(1000f, 0f), UiShowHideType.Slide, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+```

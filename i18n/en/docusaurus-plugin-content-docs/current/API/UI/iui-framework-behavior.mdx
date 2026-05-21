@@ -1,0 +1,19 @@
+---
+sidebar_position: 3
+description: UI Framework Behavior Interface
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# IUIFrameworkBehavior
+
+The extended framework for UI animation effects. Commonly used animation effects should inherit from this framework to maintain a unified format.
+
+## Methods 
+| Method Name | Parameters | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| OnShowByShowType | direction<br/>behavior<br/>startShowEvent<br/>completeShowEvent<br/>duration | public | Display the UI according to the specified show style |
+| OnHideByShowType | direction<br/>behavior<br/>startShowEvent<br/>completeShowEvent<br/>duration | public | Hide the UI according to the specified hide style |
+
+The `startShowEvent` and `completeShowEvent` have already been introduced in the [UI Framework Base](./ui-framework-base.mdx#fields-and-parameters) section, so no additional explanation will be provided here.

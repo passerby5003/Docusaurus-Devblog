@@ -1,0 +1,29 @@
+---
+sidebar_position: 2
+description: UI Beahvior Base
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Behavior Base
+
+UI表现形式的类的基础，所有扩展的表现类都必须继承自这个类，以便在同一套逻辑下正确运行。  
+如果需要添加自己的表现类到UI框架中，请在 `GetBehaviorByType` 方法中添加你所创建的新的UI动画，或者也可以使用 `Dotween.Sequecnce()` 添加自己想要的动画体（更方便但是需要更多控制）。  
+
+不过目前已有的几个基本动画基本上可以满足绝大部分的展示需求了，如果有些动画满足不了需求的话再创建。  
+
+## 字段参数
+| 名称 | 类型 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| gameObj | MonoBehavior | public | 一般代表的是当前UI物体本身 |
+| movePos | Vector2 | public | 移动终点位置 |
+| startPos | Vector2 | public | 移动起点位置 |
+| duration | float | public | 动画效果持续时间 |
+| moveTween | `List<MoveTween>` | protected | 所有效果需要用到Dotween的都存放在这里 |
+
+## 方法 
+| 方法名 | 参数 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| UIBehaviorBase | gameObj<br/>movePos<br/>duration | public | 构造方法，用于初始化 |
+| UIBehaviorBase | gameObj<br/>movePos<br/>startPos<br/>duration | public | 构造方法，用于初始化 |

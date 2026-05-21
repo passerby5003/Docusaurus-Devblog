@@ -1,0 +1,34 @@
+---
+sidebar_position: 8
+description: UI Slide Scale Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Slide Scale Behavior
+
+Basic UI sliding and scaling effect with directionality. The UI moves from the start point to the end point along a default Bezier curve while scaling from (0, 0) to (1, 1).
+
+Both the start and end points are based on the anchored position. Ensure careful consideration when specifying these points.
+
+This behavior has two modes: `Synchronize` and `Sequence`.
+- `Synchronize`: Perform scaling and sliding simultaneously.
+- `Sequence`: Perform sliding first, followed by scaling.
+
+:::tip[More Interesting Effects?]
+    Changing the Pivot of the UI coordinates can reveal more interesting effects.
+:::
+
+:::warning[Note]
+    When the end coordinate is (0, 0), the UI is moved off-screen by default.
+:::
+
+Inherits from: 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+## Usage Example
+```csharp title="Example.cs"
+    ShowUI(new Vector2(1f, 0f), new Vector2(1000f, 0f), UiShowHideType.SlideScale, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+```

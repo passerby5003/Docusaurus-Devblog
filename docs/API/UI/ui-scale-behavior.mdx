@@ -1,0 +1,25 @@
+---
+sidebar_position: 5
+description: UI Scale Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Scale behavior
+
+UI 基础的缩放，无方向性，表现形式为基础的从缩放为0，0 变成1，1
+
+继承自： 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+:::tip[修改提示]
+    如果不想要这个效果默认从0，0开始，到1，1结束，可以将代码中的 `DOScale` 后的参数和一开始的 `Transform.localscale` 设置为 `movePos` 和 `startPos`
+:::
+
+## 使用范例
+```csharp title="Example.cs"
+    //这里的Left，Right不会影响缩放，任意填写一个即可
+    ShowUI(UiShowHideType.Scale, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+```

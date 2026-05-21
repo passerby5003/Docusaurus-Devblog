@@ -1,0 +1,19 @@
+---
+sidebar_position: 3
+description: UI Framework Behavior Interface
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# IUIFrameworkBehavior
+
+UI动画效果扩展框架，一般常用的动画效果需要继承自这个框架来统一格式
+
+## 方法  
+| 方法名 | 参数 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| OnShowByShowType | direction<br/>behavior<br/>startShowEvent<br/>completeShowEvent<br/>duration | public | 按照指定的展示样式显示出UI |
+| OnHideByShowType | direction<br/>behavior<br/>startShowEvent<br/>completeShowEvent<br/>duration | public | 按照指定的展示样式隐藏UI |
+
+`startShowEvent` 和 `completeShowEvent` 已经在[UI Framework Base](./ui-framework-base.mdx#字段参数) 中介绍过，这里不再做额外讲解。

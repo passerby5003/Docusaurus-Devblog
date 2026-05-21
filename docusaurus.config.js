@@ -104,7 +104,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: '说明文档',
+            label: '博客总览',
           },
           {to: '/blog', label: '博客', position: 'left'},
           {
@@ -183,6 +183,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ['csharp'],
       },
     }),
 };

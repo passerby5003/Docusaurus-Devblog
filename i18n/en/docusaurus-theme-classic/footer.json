@@ -41,6 +41,6 @@
   },
   "link.item.label.API": {
     "message": "API",
-    "description": "The label of footer link with label=API linking to /api/intro"
+    "description": "The label of footer link with label=API linking to /docs/API/intro"
   }
 }

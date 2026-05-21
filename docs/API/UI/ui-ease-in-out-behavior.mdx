@@ -1,0 +1,28 @@
+---
+sidebar_position: 8
+description: UI Ease In Out Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Ease In Out behavior
+
+UI 会先移动到目标位置偏移一段距离的位置，然后弹回目标位置。类似于弹一下然后回归目标位置的UI。具有方向性，只有左右两个方向。
+
+在弹入和弹出的状态下，必须要给出终点坐标，否则移动就不会有效果。
+
+起点和终点都是基于anchored position，填写起点和终点时务必注意。
+
+:::warning[注意事项]
+    当终点坐标为0，0时，默认移出屏幕外.
+:::
+
+继承自： 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+## 使用范例
+```csharp title="Example.cs"
+    ShowUI(new Vector2(1f, 0f), new Vector2(1000f, 0f), UiShowHideType.EaseInOut, UiShowHideDirection.Right, 1f, UiShowHideBehavior.Synchronize);
+```

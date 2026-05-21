@@ -1,0 +1,19 @@
+---
+sidebar_position: 4
+description: UI Custom Behavior Interface
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# IUICustomBehavior
+
+UI动画效果自定义框架，一般需要自己设计的Dotween Sequence动画效果需要继承自这个框架来统一格式
+
+## 方法  
+| 方法名 | 参数 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| OnShowByShowType | sequence<br/>startShowEvent<br/>completeShowEvent | public | 按照指定的展示样式显示出UI |
+| OnHideByShowType | sequence<br/>startShowEvent<br/>completeShowEvent | public | 按照指定的展示样式隐藏UI |
+
+`startShowEvent` 和 `completeShowEvent` 已经在[UI Framework Base](./ui-framework-base.mdx#字段参数) 中介绍过，这里不再做额外讲解。

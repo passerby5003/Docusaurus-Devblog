@@ -1,0 +1,25 @@
+---
+sidebar_position: 5
+description: UI Scale Behavior
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# UI Scale Behavior
+
+Basic UI scaling with no directionality. The default behavior scales from (0, 0) to (1, 1).
+
+Inherits from: 
+- [UIBehaviorBase](./ui-behavior-base.mdx)
+- [IUIFrameworkBehavior](./iui-framework-behavior.mdx)
+
+:::tip[Modification Tip]
+    If you don't want the default behavior of scaling from (0, 0) to (1, 1), you can modify the parameters after `DOScale` and set the initial `Transform.localScale` to `movePos` and `startPos`.
+:::
+
+## Usage Example
+```csharp title="Example.cs"
+    //这里的Left，Right不会影响缩放，任意填写一个即可
+    ShowUI(UiShowHideType.Scale, UiShowHideDirection.Left, 1f, UiShowHideBehavior.Synchronize);
+```

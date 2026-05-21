@@ -1,0 +1,19 @@
+---
+sidebar_position: 4
+description: UI Custom Behavior Interface
+tags:
+    - UI
+# slug: /basics/finished
+---
+
+# IUICustomBehavior
+
+A customization framework for UI animation effects. If you need to design a Dotween Sequence animation effect, you should inherit from this framework to ensure a unified format.
+
+## Methods
+| Method Name | Parameters | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| OnShowByShowType | sequence<br/>startShowEvent<br/>completeShowEvent | public | Displays the UI according to the specified display style |
+| OnHideByShowType | sequence<br/>startShowEvent<br/>completeShowEvent | public | Hides the UI according to the specified display style |
+
+`startShowEvent` and `completeShowEvent` have already been introduced in the [UI Framework Base](./ui-framework-base.mdx#fields-and-parameters). No additional explanation will be provided here.
