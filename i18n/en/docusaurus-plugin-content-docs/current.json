@@ -33,6 +33,6 @@
   },
   "sidebar.tutorialSidebar.category.API 文档.link.generated-index.description": {
     "message": "Here is the general API documentation for my Unity project, which includes detailed explanations and usage methods for various utility classes and framework classes I have developed. Whether you are a beginner or an experienced developer, these documents will help you better understand and use the APIs of the frameworks I have developed, improving your development efficiency and code quality.",
-    "description": "The generated-index page description for category 'API Docs' in sidebar 'tutorialSidebar'"
+    "description": "The generated-index page description for category 'API 文档' in sidebar 'tutorialSidebar'"
   }
 }

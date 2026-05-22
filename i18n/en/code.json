@@ -382,7 +382,10 @@
   "记录开发日志": {
     "message": "Record Development Logs"
   },
-  "个人博客": {
-    "message": "My Personal Dev blog"
+  "的个人博客": {
+    "message": "'s Personal Dev blog"
+  },
+  "Unity 开发者，哨笛爱好者，摄影爱好者": {
+    "message": "Unity developer, Whistle lover, Photography enthusiast"
   }
 }

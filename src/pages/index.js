@@ -15,15 +15,22 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}'s Devblog
+          {siteConfig.title} <Translate>的个人博客</Translate>
         </Heading>
-        <p className="hero__subtitle"><Translate>个人博客</Translate></p>
+        <p className="hero__subtitle">
+          <img src="https://github.com/passerby5003.png" className={styles.avatar} />
+          <Translate>Unity 开发者，哨笛爱好者，摄影爱好者</Translate>
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
             <Translate>进入Blog！</Translate>
           </Link>
+        </div>
+        <div className={styles.signatures}>
+          <img src={require('@site/static/img/rarick.png').default} 
+        />    
         </div>
       </div>
     </header>
