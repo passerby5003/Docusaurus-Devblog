@@ -68,7 +68,7 @@ The foundation of the entire UI framework. All UI entry, exit, red dot system, e
 :::
 
 ## Usage Examples
-Example of a UI Manager class:  
+### Example of a UI Manager class  
 
 ```csharp title="UIFrameworkExampleManager.cs"
 public class UIManager : MonoBehavior
@@ -86,7 +86,7 @@ public class UIManager : MonoBehavior
 }
 ```
 
-Example of a UI Framework class:  
+### Example of a UI Framework class 
 
 ```csharp title="UIFrameworkExampleSubUI.cs"
 public class SubUI : UIFrameworkBase
@@ -109,4 +109,30 @@ public class SubUI : UIFrameworkBase
         }
     }
 }
+```
+
+### Example of Red Points
+```csharp title="UIFrameWorkExampleRedPoint.cs"
+private bool isRead = false;
+    protected bool b_IsRead
+    {
+        get { return isRead; }
+        set
+        {
+            isRead = value;
+            //Inverted bool, cause there's no red point when read, and a red point when unread
+            UseRedPoint(() => !isRead);
+        }
+    }
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        b_IsRead = false;
+        //btn respresents a UI button somewhere
+        btn.onClick.AddListener(() =>
+        {
+            Camera.main.GetComponent<CameraPerspective>().MoveCameraTo(locator.position, 500f);
+            b_IsRead = true;
+        });
+    }
 ```

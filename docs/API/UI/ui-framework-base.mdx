@@ -68,7 +68,7 @@ tags:
 :::
 
 ## 具体使用范例
-UI管理类的范例：  
+### UI管理类的范例
 
 ```csharp title="UIFrameworkExampleManager.cs"
 public class UIManager : MonoBehavior
@@ -86,7 +86,7 @@ public class UIManager : MonoBehavior
 }
 ```
 
-UI框架类的范例：  
+### UI框架类的范例  
 
 ```csharp title="UIFrameworkExampleSubUI.cs"
 public class SubUI : UIFrameworkBase
@@ -109,4 +109,30 @@ public class SubUI : UIFrameworkBase
         }
     }
 }
+```
+
+### 红点的使用范例
+```csharp title="UIFrameWorkExampleRedPoint.cs"
+private bool isRead = false;
+    protected bool b_IsRead
+    {
+        get { return isRead; }
+        set
+        {
+            isRead = value;
+            //要取反，因为阅读完了后是取消红点，未阅读是激活红点
+            UseRedPoint(() => !isRead);
+        }
+    }
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        b_IsRead = false;
+        //btn表明的是某一个UI按钮
+        btn.onClick.AddListener(() =>
+        {
+            Camera.main.GetComponent<CameraPerspective>().MoveCameraTo(locator.position, 500f);
+            b_IsRead = true;
+        });
+    }
 ```
