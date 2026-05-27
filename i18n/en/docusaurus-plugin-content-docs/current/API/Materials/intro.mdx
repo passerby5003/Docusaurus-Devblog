@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+description: Material Modifier
+---
+
+# Material Modifier
+
+A set of methods to control object materials, allowing quick modification of individual materials. When an object has multiple materials, it can also quickly replace the entire set of materials with a pre-configured material combination.
+
+Since this class is a pure method class, with only static methods, it has no fields and is not a Mono class.
+
+## Methods
+
+| Method Name | Parameters | Access Level | Description |
+| :-: | :-: | :-: | :-: |
+| SetUnifiedMaterial | renderer<br/>color | public static | Sets the materials on the MeshRenderer to a uniform color |
+| SetUnifiedMaterial | renderer<br/>mat | public static | Sets the materials on the MeshRenderer to a single uniform material |
+| SetMaterials | renderer<br/>mats | public static | Replaces all materials on the MeshRenderer with the specified materials (`mats`) |
+| SetMaterial | renderer<br/>mat<br/>index | public static | Replaces a specific material on the MeshRenderer with the specified material (`mat`) |
+| SmoothMaterialColor | renderer<br/>color<br/>duration | public static | Smoothly transitions the colors of all materials on the MeshRenderer |
+
+## Usage Examples
+
+```csharp title="MaterialSetter.cs"
+// This array stores the original materials of the obj
+public Material[] originalMat;
+public void SetPreviewPlacement(GameObject obj, bool isPlacement)
+{
+    MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+    if (isPlacement)
+    {
+        MaterialModifier.SetUnifiedMaterial(renderer, Color.green);
+    }
+    else
+    {
+        MaterialModifier.SetMaterials(renderer, originalMat);
+    }
+}
+
+public void SwitchMaterialColor(GameObject obj, bool isSwitching)
+{
+    Color color = isSwitching ? Color.red : Color.yellow;
+    MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+    MaterialModifier.SmoothMaterialColor(renderer, color, 2f);
+}
+```

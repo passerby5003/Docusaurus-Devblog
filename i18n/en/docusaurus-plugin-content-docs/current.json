@@ -42,5 +42,13 @@
   "sidebar.tutorialSidebar.category.泛用对象池.link.generated-index.description": {
     "message": "Documentation for the generic object pool, explaining its usage and underlying principles.",
     "description": "The generated-index page description for category '泛用对象池' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Materials": {
+    "message": "Materials",
+    "description": "The label for category 'Materials' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.api.category.Materials": {
+    "message": "Materials",
+    "description": "The label for category 'Materials' in sidebar 'api'"
   }
 }

@@ -1,0 +1,46 @@
+---
+sidebar_position: 1
+description: Material Modifier
+---
+
+# Material Modifier
+
+一套控制物体材质的方法，可以快速修改单个材质。当物体上有不止一个材质时，也可以快速将整套材质替换成预先配置好的材质组合。
+
+由于该类是一个纯方法类，因此没有字段，只有静态方法，且不为Mono类。
+
+## 方法
+
+| 方法名 | 参数 | 访问级别 | 描述 |
+| :-: | :-: | :-: | :-: |
+| SetUnifiedMaterial | renderer<br/>color | public static | 将MeshRenderer上的材质设置成统一的颜色 |
+| SetUnifiedMaterial | renderer<br/>mat | public static | 将MeshRenderer上的材质设置成统一的一个材质 |
+| SetMaterials | renderer<br/>mats | public static | 将整个MeshRenderer上的材质全部替换成mats指定的材质 |
+| SetMaterial | renderer<br/>mat<br/>index | public static | 将MeshRenderer上的某一个材质替换成mat指定的材质 |
+| SmoothMaterialColor | renderer<br/>color<br/>duration | public static | 将MeshRenderer上所有的材质平滑过渡颜色 |
+
+## 具体使用方式
+
+```csharp title="MaterialSetter.cs"
+//这里的数组存放了obj原有的材质组
+public Material[] originalMat;
+public void SetPreviewPlacement(GameObject obj, bool isPlacement)
+{
+    MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+    if (isPlacement)
+    {
+        MaterialModifier.SetUnifiedMaterial(renderer, Color.green);
+    }
+    else
+    {
+        MaterialModifier.SetMaterials(renderer, originalMat);
+    }
+}
+
+public void SwitchMaterialColor(GameObject obj, bool isSwitching)
+{
+    Color color = isSwitching ? Color.red : Color.yellow;
+    MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+    MaterialModifier.SmoothMaterialColor(renderer, color, 2f);
+}
+```
