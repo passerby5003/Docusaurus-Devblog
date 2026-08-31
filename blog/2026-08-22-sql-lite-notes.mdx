@@ -1,0 +1,64 @@
+---
+title: SQLite Python和C#学习笔记
+authors: [rarick]
+tags: [aiagent]
+---
+
+# SQLite 学习笔记
+这里是有关SQLite在C#和Python两种语言中的具体使用方式的笔记。
+
+SQLite是一种轻量化的SQL数据库，可以部署在本地，无需服务器等硬件，兼容性好，适合小型项目的数据管理。  
+若有比较大的项目，且需要开源的SQL数据库，可以选用PostgreSQL来作为代替。
+
+{/* truncate */}
+
+# C# 中的SQLite使用方法
+要在C#中使用SQLite，首先需要`Microsoft.Data.Sqlite`包，可以通过Nuget获取。  
+之后，通过`using Microsoft.Data.Sqlite; `来引用SQLite。
+
+## 链接至SQLite数据库
+```csharp title='connection.cs'
+// 将dbFile替换成我们需要用的db文件名
+var connection = new SqliteConnection("Data Source=dbFile");
+
+//链接到数据库
+connection.Open();
+
+//关闭链接
+connection.Close();
+
+//链接到指定位置数据库，并使用using限定链接的时效
+//需要注意的是，这里的db必须存在，否则会报错
+using var connection = new SqliteConnection(@"Data Source=C:\db\pub.db");
+```
+
+## 创建SQLite表
+```csharp title='CreateTable.cs'
+using Microsoft.Data.Sqlite;
+
+//使用 IF NOT EXISTS 可以在数据库不存在时才创建该数据库
+var sql = @"CREATE TABLE IF NOT EXISTS authors(
+    id INTEGER PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL
+)";
+
+try
+{
+    using var connection = new SqliteConnection(@"Data Source=C:\db\pub.db");
+    connection.Open();
+
+    //使用SqliteCommand来进行数据库的创建操作，并使用ExecuteNonQuery启动该操作
+    using var command = new SqliteCommand(sql, connection);
+    command.ExecuteNonQuery();
+
+    Console.WriteLine("Table 'authors' created successfully.");
+
+}
+catch (SqliteException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+```
+
+相关资料： [Learn SQL with C#](https://www.sqlitetutorial.net/sqlite-csharp/)
