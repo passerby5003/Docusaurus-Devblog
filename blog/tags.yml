@@ -32,3 +32,8 @@ aiagent:
   label: AI Agent
   permalink: /aiagent
   description: AI Agent learning and development records
+
+sqlite:
+  label: SQLite
+  permalink: /sqlite
+  description: SQLite database usage and notes
